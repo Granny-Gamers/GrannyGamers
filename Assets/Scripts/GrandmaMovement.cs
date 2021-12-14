@@ -8,9 +8,16 @@ public class GrandmaMovement : MonoBehaviour
     public Text displayText;
 
     private Rigidbody2D body;
-    private string _stringInput = "";
+    private string _commandString = "";
 
-    [SerializeField] private float speed;
+    [SerializeField] private float horiSpeed;
+    [SerializeField] private float vertSpeed;
+
+    // Initializes variables before application starts
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -32,32 +39,35 @@ public class GrandmaMovement : MonoBehaviour
             return;
 
         // Ensures no more than 5 commands are inputted
-        if (_stringInput.Length < 5)
-            _stringInput += charInput;
-        displayText.text = _stringInput;
+        if (_commandString.Length < 5)
+            _commandString += charInput;
+        displayText.text = _commandString;
     }
 
     // Runs the commands that have been inputted
     private void Execute()
     {
-        Debug.Log(_stringInput);
+        // Iterates through each character in the command string to run each command
+        foreach (char c in _commandString)
+        {
+            if (c == 'q')
+                body.velocity = new Vector2(-horiSpeed, vertSpeed);
 
-        // Resets the text
-        _stringInput = "";
-        displayText.text = _stringInput;
-    }
+            else if (c == 'w')
+                body.velocity = new Vector2(body.velocity.x, vertSpeed);
 
+            else if (c == 'e')
+                body.velocity = new Vector2(horiSpeed, vertSpeed);
 
+            else if (c == 'a')
+                body.velocity = new Vector2(-horiSpeed, body.velocity.y);
 
-    private void Awake() 
-    {
-        body = GetComponent<Rigidbody2D>();
-    }
+            else if (c == 'd')
+                body.velocity = new Vector2(horiSpeed, body.velocity.y);
+        }
 
-    private void UpdateDemo() 
-    {
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
-        if (Input.GetKey(KeyCode.Space))
-            body.velocity = new Vector2(body.velocity.x, speed);
+        // Resets the command string
+        _commandString = "";
+        displayText.text = _commandString;
     }
 }
