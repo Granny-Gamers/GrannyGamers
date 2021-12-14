@@ -10,6 +10,7 @@ public class GrandmaMovement : MonoBehaviour
     private Rigidbody2D body;
     private string _commandString = "";
 
+    // Editable fields for the speed in the Unity editor
     [SerializeField] private float horiSpeed;
     [SerializeField] private float vertSpeed;
 
@@ -19,7 +20,14 @@ public class GrandmaMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
+    // Runs every frame
     private void Update()
+    {
+        InputHandler();
+    }
+
+    // Receives and executes the input
+    private void InputHandler()
     {
         // Checks if there was input
         string input = Input.inputString;
@@ -30,7 +38,7 @@ public class GrandmaMovement : MonoBehaviour
         char charInput = input[0];
         if (charInput == '\n' || charInput == '\r')
         {
-            Execute();
+            ExecuteCommands();
             return;
         }
 
@@ -44,30 +52,38 @@ public class GrandmaMovement : MonoBehaviour
         displayText.text = _commandString;
     }
 
+
     // Runs the commands that have been inputted
-    private void Execute()
+    private void ExecuteCommands()
     {
         // Iterates through each character in the command string to run each command
         foreach (char c in _commandString)
         {
             if (c == 'q')
-                body.velocity = new Vector2(-horiSpeed, vertSpeed);
+                Move(-horiSpeed, vertSpeed);
 
             else if (c == 'w')
-                body.velocity = new Vector2(body.velocity.x, vertSpeed);
+                Move(body.velocity.x, vertSpeed);
 
             else if (c == 'e')
-                body.velocity = new Vector2(horiSpeed, vertSpeed);
+                Move(horiSpeed, vertSpeed);
 
             else if (c == 'a')
-                body.velocity = new Vector2(-horiSpeed, body.velocity.y);
+                Move(-horiSpeed, body.velocity.y);
 
             else if (c == 'd')
-                body.velocity = new Vector2(horiSpeed, body.velocity.y);
+                Move(horiSpeed, body.velocity.y);
         }
 
         // Resets the command string
         _commandString = "";
         displayText.text = _commandString;
     }
+
+    private void Move(float horizontalSpeed, float verticalSpeed)
+    {
+        body.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+    }
 }
+
+
