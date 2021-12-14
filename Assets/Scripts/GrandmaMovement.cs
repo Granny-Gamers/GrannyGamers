@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class GrandmaMovement : MonoBehaviour
 {
     public Text displayText;
 
-    private Rigidbody2D body;
+    private Rigidbody2D rb;
     private string _commandString = "";
 
     // Editable fields for the speed in the Unity editor
@@ -17,7 +18,7 @@ public class GrandmaMovement : MonoBehaviour
     // Initializes variables before application starts
     private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Runs every frame
@@ -63,16 +64,16 @@ public class GrandmaMovement : MonoBehaviour
                 Move(-horiSpeed, vertSpeed);
 
             else if (c == 'w')
-                Move(body.velocity.x, vertSpeed);
+                Move(rb.velocity.x, vertSpeed);
 
             else if (c == 'e')
                 Move(horiSpeed, vertSpeed);
 
             else if (c == 'a')
-                Move(-horiSpeed, body.velocity.y);
+                Move(-horiSpeed, rb.velocity.y);
 
             else if (c == 'd')
-                Move(horiSpeed, body.velocity.y);
+                Move(horiSpeed, rb.velocity.y);
         }
 
         // Resets the command string
@@ -80,9 +81,12 @@ public class GrandmaMovement : MonoBehaviour
         displayText.text = _commandString;
     }
 
+    // Moves the character depending on horizontal and vertical speed
     private void Move(float horizontalSpeed, float verticalSpeed)
     {
-        body.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        rb.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        //Vector2 force = new Vector2(horizontalSpeed*Time.deltaTime, verticalSpeed*Time.deltaTime);
+        //rb.AddForce(force);
     }
 }
 
