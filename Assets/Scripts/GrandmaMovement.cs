@@ -20,7 +20,7 @@ public class GrandmaMovement : MonoBehaviour
     [SerializeField] private float vertSpeed;
 
     // Initializes variables before application starts.
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
