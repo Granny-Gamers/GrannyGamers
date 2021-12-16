@@ -57,6 +57,14 @@ public class GrandmaMovement : MonoBehaviour
             return;
         }
 
+        // Check if user wants to delete action
+        if (charInput == '\b' && _commandString != "")
+        {
+            _commandString = _commandString.Remove(_commandString.Length - 1, 1);
+            displayText.text = _commandString;
+            return;
+        }
+
         // Checks if a directional key was inputted.
         if (!(charInput == 'q' || charInput == 'w' || charInput == 'e' || charInput == 'a' || charInput == 'd'))
             return;
