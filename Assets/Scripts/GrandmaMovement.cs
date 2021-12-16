@@ -9,13 +9,13 @@ public class GrandmaMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    // String property that holds the commands that need to be executed
+    // String property that holds the commands that need to be executed.
     private string _commandString = "";
 
-    // Boolean flag that indicates if movement is occuring
+    // Boolean flag that indicates if movement is occuring.
     private bool _move = false;
 
-    // Editable fields for the speed in the Unity editor.
+    // Editable private fields for the speed in the Unity editor.
     [SerializeField] private float horiSpeed;
     [SerializeField] private float vertSpeed;
 
@@ -37,7 +37,7 @@ public class GrandmaMovement : MonoBehaviour
         MoveHandler();
     }
 
-    // Receives the input and adds it to the _commandString
+    // Receives the input and adds it to the _commandString.
     private void InputHandler()
     {
         // If a move is being executed, then input should not be accepted.
@@ -67,28 +67,28 @@ public class GrandmaMovement : MonoBehaviour
         displayText.text = _commandString;
     }
 
-    // Detects when movement should occur and executes the movements
+    // Detects when movement should occur and executes the movements.
     private void MoveHandler()
     {
         // If no moves need to be executed, then end the call.
         if (_move == false)
             return;
 
-        // If there are no moves to be made, then end the movement and allow inputs
+        // If there are no moves to be made, then end the movement and allow inputs.
         if (_commandString.Length == 0)
         {
             _move = false;
             return;
         }
 
-        // Moves should be executed once the character comes to a complete stop
+        // Moves should be executed once the character comes to a complete stop.
         if (rb.velocity.x == 0 && rb.velocity.y == 0)
         {
             MoveLogic();
         }
     }
 
-    // Processes the command to movement logic
+    // Processes the command to movement logic.
     private void MoveLogic()
     {
         char c = _commandString[0];
@@ -107,7 +107,7 @@ public class GrandmaMovement : MonoBehaviour
         else if (c == 'd')
             Move(horiSpeed, rb.velocity.y);
 
-        // Moves to the next command
+        // Moves to the next command.
         _commandString = _commandString.Substring(1);
         displayText.text = _commandString;
     }
