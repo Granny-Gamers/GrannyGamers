@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GrandmaMovement : MonoBehaviour
 {
     public Text displayText;
+    public Text velocityText;
 
     private Rigidbody2D rb;
 
@@ -29,6 +30,7 @@ public class GrandmaMovement : MonoBehaviour
     private void Update()
     {
         InputHandler();
+        velocityText.text = "Velocity:" + rb.velocity.ToString();
     }
 
     // Runs in time with the physics system.
