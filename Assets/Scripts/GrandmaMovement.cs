@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GrandmaMovement : MonoBehaviour
 {
     public Text displayText;
-    public Text velocityText;
 
     private Rigidbody2D rb;
 
@@ -21,7 +20,7 @@ public class GrandmaMovement : MonoBehaviour
     [SerializeField] private float vertSpeed;
 
     // Initializes variables before application starts.
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -30,7 +29,6 @@ public class GrandmaMovement : MonoBehaviour
     private void Update()
     {
         InputHandler();
-        velocityText.text = "Velocity:" + rb.velocity.ToString();
     }
 
     // Runs in time with the physics system.
@@ -64,7 +62,6 @@ public class GrandmaMovement : MonoBehaviour
         {
             _commandString = _commandString.Remove(_commandString.Length - 1, 1);
             displayText.text = _commandString;
-            return;
         }
 
         // Checks if a directional key was inputted.
