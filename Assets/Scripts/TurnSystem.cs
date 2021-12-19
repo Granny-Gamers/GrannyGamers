@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerSystem : MonoBehaviour
+public class TurnSystem : MonoBehaviour
 {
-    private bool _run = false;
+    public int turnCount = 0;
 }

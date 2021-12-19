@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GrandmaMovement : MonoBehaviour
 {
-    public Text displayText;
+    // Debug display
+    public Text displayText; 
+    public Text turnText;
 
-    public float moveSpeed = 5f;
-    public Transform movePoint;
+    public TurnSystem turnSystem;
 
     // String property that holds the commands that need to be executed.
     private string _commandString = "";
@@ -23,8 +24,6 @@ public class GrandmaMovement : MonoBehaviour
     // Initializes variables before application starts.
     private void Start()
     {
-        // Ensures that the sprite movement does not move the move point
-        movePoint.parent = null;
     }
 
     // Runs every frame.
@@ -74,7 +73,7 @@ public class GrandmaMovement : MonoBehaviour
         // Ensures no more than 5 commands are inputted.
         if (_commandString.Length < 5)
             _commandString += charInput;
-        displayText.text = _commandString;
+        displayText.text = "Input: " + _commandString;
     }
 
     // Detects when movement should occur and executes the movements.
@@ -97,6 +96,10 @@ public class GrandmaMovement : MonoBehaviour
     // Processes the command to movement logic.
     private void MoveLogic()
     {
+        // Update the turn system since it's dependent on player movement
+        int currentTurn = ++turnSystem.turnCount;
+        turnText.text = "Turn: " + currentTurn.ToString();
+
         char c = _commandString[0];
         if (c == 'q')
             Move(-horiDist, vertDist);
@@ -113,6 +116,7 @@ public class GrandmaMovement : MonoBehaviour
         else if (c == 'd')
             Move(horiDist, 0);
 
+        // Update the display for the commands
         _commandString = _commandString.Substring(1);
         displayText.text = _commandString;
     }
