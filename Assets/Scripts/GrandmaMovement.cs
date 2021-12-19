@@ -6,12 +6,9 @@ using UnityEngine.UI;
 public class GrandmaMovement : MonoBehaviour
 {
     public Text displayText;
-    public Text velocityText;
 
     public float moveSpeed = 5f;
     public Transform movePoint;
-
-    private Rigidbody2D rb;
 
     // String property that holds the commands that need to be executed.
     private string _commandString = "";
@@ -20,14 +17,12 @@ public class GrandmaMovement : MonoBehaviour
     private bool _move = false;
 
     // Editable private fields for the speed in the Unity editor.
-    [SerializeField] private float horiSpeed;
-    [SerializeField] private float vertSpeed;
+    [SerializeField] private float horiDist;
+    [SerializeField] private float vertDist;
 
     // Initializes variables before application starts.
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         // Ensures that the sprite movement does not move the move point
         movePoint.parent = null;
     }
@@ -36,7 +31,6 @@ public class GrandmaMovement : MonoBehaviour
     private void Update()
     {
         InputHandler();
-        velocityText.text = "Velocity:" + rb.velocity.ToString();
     }
 
     // Runs in time with the physics system.
@@ -97,11 +91,7 @@ public class GrandmaMovement : MonoBehaviour
             return;
         }
 
-        // Moves should be executed once the character comes to a complete stop.
-        if (rb.velocity.x == 0 && rb.velocity.y == 0)
-        {
-            MoveLogic();
-        }
+        MoveLogic();
     }
 
     // Processes the command to movement logic.
@@ -109,30 +99,28 @@ public class GrandmaMovement : MonoBehaviour
     {
         char c = _commandString[0];
         if (c == 'q')
-            Move(-horiSpeed, vertSpeed);
+            Move(-horiDist, vertDist);
 
         else if (c == 'w')
-            Move(rb.velocity.x, vertSpeed);
+            Move(0, vertDist);
 
         else if (c == 'e')
-            Move(horiSpeed, vertSpeed);
+            Move(horiDist, vertDist);
 
         else if (c == 'a')
-            Move(-horiSpeed, rb.velocity.y);
+            Move(-horiDist, 0);
 
         else if (c == 'd')
-            Move(horiSpeed, rb.velocity.y);
+            Move(horiDist, 0);
 
-        // Moves to the next command.
         _commandString = _commandString.Substring(1);
         displayText.text = _commandString;
     }
 
-    // Moves the character depending on horizontal and vertical speed.
-    private void Move(float horizontalSpeed, float verticalSpeed)
-    {
-        movePoint.position += new Vector3(horizontalSpeed, verticalSpeed, 0);
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
+    // Teleports the character depending on horizontal and vertical distance.
+    private void Move(float horizontalDist, float verticalDist)
+    {     
+        transform.position += new Vector3(horizontalDist, verticalDist, 0);
     }
 }
 
