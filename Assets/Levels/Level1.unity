@@ -430,6 +430,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: {fileID: 345808547}
   velocityText: {fileID: 9201683}
+  moveSpeed: 5
+  movePoint: {fileID: 1737452213}
   horiSpeed: 3
   vertSpeed: 5
 --- !u!1 &345808545

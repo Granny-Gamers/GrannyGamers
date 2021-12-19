@@ -8,6 +8,9 @@ public class GrandmaMovement : MonoBehaviour
     public Text displayText;
     public Text velocityText;
 
+    public float moveSpeed = 5f;
+    public Transform movePoint;
+
     private Rigidbody2D rb;
 
     // String property that holds the commands that need to be executed.
@@ -24,6 +27,9 @@ public class GrandmaMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Ensures that the sprite movement does not move the move point
+        movePoint.parent = null;
     }
 
     // Runs every frame.
@@ -125,7 +131,8 @@ public class GrandmaMovement : MonoBehaviour
     // Moves the character depending on horizontal and vertical speed.
     private void Move(float horizontalSpeed, float verticalSpeed)
     {
-        rb.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        movePoint.position += new Vector3(horizontalSpeed, verticalSpeed, 0);
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
     }
 }
 
