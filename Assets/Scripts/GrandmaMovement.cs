@@ -99,7 +99,7 @@ public class GrandmaMovement : MonoBehaviour
         // Update the turn system since it's dependent on player movement
         int currentTurn = ++turnSystem.turnCount;
         turnText.text = "Turn: " + currentTurn.ToString();
-
+        
         char c = _commandString[0];
         if (c == 'q')
             Move(-horiDist, vertDist);
