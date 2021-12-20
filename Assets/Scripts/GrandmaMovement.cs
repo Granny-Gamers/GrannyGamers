@@ -5,25 +5,35 @@ using UnityEngine.UI;
 
 public class GrandmaMovement : MonoBehaviour
 {
-    // Debug display
+    // Debug display.
     public Text displayText; 
     public Text turnText;
 
+    // Field for passing the turn system.
     public TurnSystem turnSystem;
+
+    // Fields that vary movement.
+    public Transform movePoint;
+    public float moveSpeed;
+
+    // Counter for controlling the pause after each unique movement.
+    private int _pauseCounter = 0;
+    private int _pauseDuration = 12;
 
     // String property that holds the commands that need to be executed.
     private string _commandString = "";
 
-    // Boolean flag that indicates if movement is occuring.
-    private bool _move = false;
+    // Boolean flag that indicates if there are commands that need to be executed.
+    private bool _hasMoves = false;
 
-    // Editable private fields for the speed in the Unity editor.
+    // Editable private fields for the distance that the player moves per movement.
     [SerializeField] private float horiDist;
     [SerializeField] private float vertDist;
 
     // Initializes variables before application starts.
     private void Start()
     {
+        movePoint.parent = null;
     }
 
     // Runs every frame.
@@ -42,7 +52,7 @@ public class GrandmaMovement : MonoBehaviour
     private void InputHandler()
     {
         // If a move is being executed, then input should not be accepted.
-        if (_move == true)
+        if (_hasMoves == true)
             return;
 
         // Checks if there was input.
@@ -54,7 +64,7 @@ public class GrandmaMovement : MonoBehaviour
         char charInput = input[0];
         if (charInput == '\n' || charInput == '\r')
         {
-            _move = true;
+            _hasMoves = true;
             return;
         }
 
@@ -62,7 +72,7 @@ public class GrandmaMovement : MonoBehaviour
         if (charInput == '\b' && _commandString != "")
         {
             _commandString = _commandString.Remove(_commandString.Length - 1, 1);
-            displayText.text = _commandString;
+            displayText.text = "Input: " + _commandString;
             return;
         }
 
@@ -80,13 +90,13 @@ public class GrandmaMovement : MonoBehaviour
     private void MoveHandler()
     {
         // If no moves need to be executed, then end the call.
-        if (_move == false)
+        if (_hasMoves == false)
             return;
 
-        // If there are no moves to be made, then end the movement and allow inputs.
-        if (_commandString.Length == 0)
+        // If there are no moves to be made and the movement is complete, then end the movement and allow inputs.
+        if (_commandString.Length == 0 && Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
-            _move = false;
+            _hasMoves = false;
             return;
         }
 
@@ -96,35 +106,62 @@ public class GrandmaMovement : MonoBehaviour
     // Processes the command to movement logic.
     private void MoveLogic()
     {
-        // Update the turn system since it's dependent on player movement
-        int currentTurn = ++turnSystem.turnCount;
-        turnText.text = "Turn: " + currentTurn.ToString();
-        
-        char c = _commandString[0];
-        if (c == 'q')
-            Move(-horiDist, vertDist);
+        if (_pauseCounter == _pauseDuration)
+        {
+            _pauseCounter = 0;
 
-        else if (c == 'w')
-            Move(0, vertDist);
+            // Update command display
+            _commandString = _commandString.Substring(1);
+            displayText.text = "Input: " + _commandString;
 
-        else if (c == 'e')
-            Move(horiDist, vertDist);
+            // Update the turn counter
+            int currentTurn = ++turnSystem.turnCount;
+            turnText.text = "Turn: " + currentTurn.ToString();
 
-        else if (c == 'a')
-            Move(-horiDist, 0);
+            return;
+        }
 
-        else if (c == 'd')
-            Move(horiDist, 0);
+        if (_pauseCounter > 0)
+        {
+            _pauseCounter++;
+            return;
+        }
 
-        // Update the display for the commands
-        _commandString = _commandString.Substring(1);
-        displayText.text = _commandString;
+        // Processes a new command if the previous command has completed running
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
+        {
+            // Begins the pause.
+            _pauseCounter = 1;
+
+            // Update the position of the move point.
+            char c = _commandString[0];
+
+            if (c == 'q')
+                AdvanceMovePoint(-horiDist, vertDist);
+
+            else if (c == 'w')
+                AdvanceMovePoint(0, vertDist);
+
+            else if (c == 'e')
+                AdvanceMovePoint(horiDist, vertDist);
+
+            else if (c == 'a')
+                AdvanceMovePoint(-horiDist, 0);
+
+            else if (c == 'd')
+                AdvanceMovePoint(horiDist, 0);
+
+            return;
+        }
+
+        // Move towards the move point
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
     }
 
-    // Teleports the character depending on horizontal and vertical distance.
-    private void Move(float horizontalDist, float verticalDist)
-    {     
-        transform.position += new Vector3(horizontalDist, verticalDist, 0);
+    // Changes the move point's position based on horizontalDist and verticalDist
+    private void AdvanceMovePoint(float horizontalDist, float verticalDist)
+    {
+        movePoint.position += new Vector3(horizontalDist, verticalDist, 0);
     }
 }
 
