@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GrandmaMovement : MonoBehaviour
 {
     // Debug display.
-    public Text displayText; 
+    public Text displayText;
     public Text turnText;
 
     // Field for passing the turn system.
@@ -68,7 +68,7 @@ public class GrandmaMovement : MonoBehaviour
             return;
         }
 
-        // Check if user wants to delete action
+        // Check if user wants to delete action.
         if (charInput == '\b' && _commandString != "")
         {
             _commandString = _commandString.Remove(_commandString.Length - 1, 1);
@@ -100,65 +100,75 @@ public class GrandmaMovement : MonoBehaviour
             return;
         }
 
-        MoveLogic();
+        MovePauseLogic();
     }
 
-    // Processes the command to movement logic.
-    private void MoveLogic()
+    // Processes the commands into the movement and pause logic.
+    private void MovePauseLogic()
     {
+        // If the pause is over, then execute the current command.
         if (_pauseCounter == _pauseDuration)
         {
             _pauseCounter = 0;
 
-            // Update command display
+            // Update command display.
             _commandString = _commandString.Substring(1);
             displayText.text = "Input: " + _commandString;
 
-            // Update the turn counter
+            // Update the turn counter.
             int currentTurn = ++turnSystem.turnCount;
             turnText.text = "Turn: " + currentTurn.ToString();
 
             return;
         }
 
+        // If the pause is occuring, do not make any movements.
         if (_pauseCounter > 0)
         {
             _pauseCounter++;
             return;
         }
 
-        // Processes a new command if the previous command has completed running
+        // If the previous command has completed, then it queues the next movement and begins pausing.
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             // Begins the pause.
             _pauseCounter = 1;
 
-            // Update the position of the move point.
-            char c = _commandString[0];
-
-            if (c == 'q')
-                AdvanceMovePoint(-horiDist, vertDist);
-
-            else if (c == 'w')
-                AdvanceMovePoint(0, vertDist);
-
-            else if (c == 'e')
-                AdvanceMovePoint(horiDist, vertDist);
-
-            else if (c == 'a')
-                AdvanceMovePoint(-horiDist, 0);
-
-            else if (c == 'd')
-                AdvanceMovePoint(horiDist, 0);
+            // Updates the move point location.
+            MovePointLogic();
 
             return;
         }
 
-        // Move towards the move point
+        // Move towards the move point by an amount given by moveSpeed.
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
     }
 
-    // Changes the move point's position based on horizontalDist and verticalDist
+    // Updates the move point location depending on the current movement command.
+    private void MovePointLogic()
+    {
+        // Update the position of the move point.
+        char c = _commandString[0];
+
+        // Change the move point location depending on the next input.
+        if (c == 'q')
+            AdvanceMovePoint(-horiDist, vertDist);
+
+        else if (c == 'w')
+            AdvanceMovePoint(0, vertDist);
+
+        else if (c == 'e')
+            AdvanceMovePoint(horiDist, vertDist);
+
+        else if (c == 'a')
+            AdvanceMovePoint(-horiDist, 0);
+
+        else if (c == 'd')
+            AdvanceMovePoint(horiDist, 0);
+    }
+
+    // Changes the move point's position based on horizontalDist and verticalDist.
     private void AdvanceMovePoint(float horizontalDist, float verticalDist)
     {
         movePoint.position += new Vector3(horizontalDist, verticalDist, 0);
