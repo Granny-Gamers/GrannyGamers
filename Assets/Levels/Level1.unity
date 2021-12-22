@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1901212427}
   dialogueText: {fileID: 2144510678}
-  typingDelay: 0.01
+  typingDelay: 0.03
 --- !u!4 &1815239785
 Transform:
   m_ObjectHideFlags: 0

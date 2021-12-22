@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
-    public float typingDelay = 0.01f;
+    public float typingDelay;
 
     private Queue<string> sentences;    
 
