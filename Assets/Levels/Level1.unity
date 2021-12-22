@@ -2437,6 +2437,7 @@ MonoBehaviour:
     sentences:
     - '(Oh damn, should I help the grandma?) '
     - (Yeah, I should go help her.)
+    - "(I guess I\u2019m going to need to do more than just help her up.)"
 --- !u!114 &1997544648
 MonoBehaviour:
   m_ObjectHideFlags: 0
