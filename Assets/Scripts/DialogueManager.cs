@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    public float typingDelay = 0.01f;
+
     private Queue<string> sentences;    
 
     // Start is called before the first frame update.
@@ -58,7 +60,8 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            //yield return null;
+            yield return new WaitForSeconds(typingDelay);
         }
     }
 
