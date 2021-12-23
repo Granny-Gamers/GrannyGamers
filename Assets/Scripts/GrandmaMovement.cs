@@ -12,6 +12,9 @@ public class GrandmaMovement : MonoBehaviour
     // Field for passing the turn system.
     public TurnSystem turnSystem;
 
+    // Field for passing the timeline manager
+    public TimelineManager timelineManager;
+
     // Fields that vary movement.
     public Transform movePoint;
     public float moveSpeed;
@@ -55,6 +58,10 @@ public class GrandmaMovement : MonoBehaviour
         if (_hasMoves == true)
             return;
 
+        // If the timeline is running, then input should not be accepted.
+        if (timelineManager.isActive == true)
+            return;
+
         // Checks if there was input.
         string input = Input.inputString;
         if (input == "")
@@ -91,6 +98,10 @@ public class GrandmaMovement : MonoBehaviour
     {
         // If no moves need to be executed, then end the call.
         if (_hasMoves == false)
+            return;
+
+        // If the timeline is running, then no moves should be ran.
+        if (timelineManager.isActive == true)
             return;
 
         // If there are no moves to be made and the movement is complete, then end the movement and allow inputs.
