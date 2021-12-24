@@ -27,10 +27,14 @@ public class AnvilMovement : MonoBehaviour
         if(_turn < turnSystem.turnCount)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
+            {
+                Debug.Log(_turn);
+                _turn++;
                 AdvanceMovePoint(0, -1);
-
-            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
+            }
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
     }
 
     // Changes the move point's position based on horizontalDist and verticalDist.
