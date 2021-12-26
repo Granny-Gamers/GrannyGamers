@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
+    name: Narrator
     sentences:
     - ' From this point forward, you will be helping the grandma to move safely.    '
     - Due to her old age, she can only remember up to five instructions.
@@ -497,6 +497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7a48a8678a2ec4b9841ab4bea58cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSystem: {fileID: 515334539}
+  movePoint: {fileID: 2040574066}
+  moveSpeed: 0.1
 --- !u!61 &216721131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2478,6 +2481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ad646442c5e4459c8f56b30e9879a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSystem: {fileID: 515334539}
+  anvil: {fileID: 957003526}
+  tree: {fileID: 1872542633}
 --- !u!1 &1901212425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,6 +2809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040574066}
+  - component: {fileID: 2040574067}
   m_Layer: 0
   m_Name: MovePoint
   m_TagString: Untagged
@@ -2824,6 +2831,20 @@ Transform:
   m_Father: {fileID: 957003527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2040574067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040574065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad19f54f1d50a545a47c248f3b834e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timelineManager: {fileID: 342793961}
+  movePoint: {fileID: 2040574066}
 --- !u!1 &2144510676
 GameObject:
   m_ObjectHideFlags: 0
