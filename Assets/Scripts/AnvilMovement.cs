@@ -6,8 +6,7 @@ public class AnvilMovement : MonoBehaviour
 {
     public TurnSystem turnSystem;
 
-    public Transform movePoint;
-    public float moveSpeed;
+    public bool isCopy = false;
 
     private int _turn = 0;
 
@@ -19,22 +18,10 @@ public class AnvilMovement : MonoBehaviour
 
     private void MoveHandler()
     {
-        if (_turn < turnSystem.turnCount)
+        if (isCopy && _turn < turnSystem.turnCount)
         {
-            movePoint.parent = null;
-            if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
-            {
-                _turn++;
-                AdvanceMovePoint(0, -1);
-            }
+            transform.position += new Vector3(0, -1, 0);
+            _turn++;
         }
-
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
-    }
-
-    // Changes the move point's position based on horizontalDist and verticalDist.
-    private void AdvanceMovePoint(float horizontalDist, float verticalDist)
-    {
-        movePoint.position += new Vector3(horizontalDist, verticalDist, 0);
     }
 }

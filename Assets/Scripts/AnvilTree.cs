@@ -6,7 +6,7 @@ public class AnvilTree : MonoBehaviour
 {
     public TurnSystem turnSystem;
     
-    public GameObject anvil;
+    public AnvilMovement anvil;
     public Transform tree;
 
     private int _turn = 0;
@@ -30,9 +30,9 @@ public class AnvilTree : MonoBehaviour
     // Spawns an anvil in a random location under the tree
     private void SpawnAnvil()
     {
-        Debug.Log("hi");
         int xPos = Random.Range(-3, 3);
         Vector3 randVector = new Vector3(xPos, 0, 0);
-        Instantiate(anvil, tree.position + randVector, tree.rotation);
+        AnvilMovement copy = Instantiate(anvil, tree.position + randVector, tree.rotation);
+        copy.isCopy = true;
     }
 }
