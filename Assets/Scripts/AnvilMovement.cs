@@ -11,11 +11,6 @@ public class AnvilMovement : MonoBehaviour
 
     private int _turn = 0;
 
-    private void Start()
-    {
-        movePoint.parent = null;
-    }
-
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -24,11 +19,11 @@ public class AnvilMovement : MonoBehaviour
 
     private void MoveHandler()
     {
-        if(_turn < turnSystem.turnCount)
+        if (_turn < turnSystem.turnCount)
         {
+            movePoint.parent = null;
             if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
             {
-                Debug.Log(_turn);
                 _turn++;
                 AdvanceMovePoint(0, -1);
             }

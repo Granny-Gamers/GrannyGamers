@@ -52,12 +52,14 @@ public class DialogueManager : MonoBehaviour
     // Animates the typing of the sentence.
     IEnumerator TypeSentence(string sentence)
     {
+        FindObjectOfType<AudioManager>().Play("Text");
         dialogueText.text = "";
 
         // Iterates through each character in the sentence, updating the dialogue and pausing per each iteration.
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+
             //yield return null;
             yield return new WaitForSeconds(typingDelay);
         }

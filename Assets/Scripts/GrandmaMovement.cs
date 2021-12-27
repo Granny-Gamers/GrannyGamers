@@ -159,6 +159,7 @@ public class GrandmaMovement : MonoBehaviour
     // Updates the move point location depending on the current movement command.
     private void MovePointLogic()
     {
+        FindObjectOfType<AudioManager>().Play("Movement");
         // Update the position of the move point.
         char c = _commandString[0];
 
