@@ -8,7 +8,7 @@ public class AnvilMovement : MonoBehaviour
 
     public bool isCopy = false;
 
-    public int _turn;
+    private int _turn = 0;
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -23,5 +23,15 @@ public class AnvilMovement : MonoBehaviour
             transform.position += new Vector3(0, -1, 0); 
             _turn = turnSystem.turnCount;
         }
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground")
+        {
+            Debug.Log("destroy");
+            Destroy(gameObject);
+        }
+            
     }
 }
