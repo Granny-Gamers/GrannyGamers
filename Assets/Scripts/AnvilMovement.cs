@@ -8,7 +8,7 @@ public class AnvilMovement : MonoBehaviour
 
     public bool isCopy = false;
 
-    private int _turn = 0;
+    public int _turn;
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -20,8 +20,8 @@ public class AnvilMovement : MonoBehaviour
     {
         if (isCopy && _turn < turnSystem.turnCount)
         {
-            transform.position += new Vector3(0, -1, 0);
-            _turn++;
+            transform.position += new Vector3(0, -1, 0); 
+            _turn = turnSystem.turnCount;
         }
     }
 }
