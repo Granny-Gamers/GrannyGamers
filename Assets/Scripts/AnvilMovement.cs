@@ -28,10 +28,6 @@ public class AnvilMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Ground")
-        {
-            Debug.Log("destroy");
             Destroy(gameObject);
-        }
-            
     }
 }
