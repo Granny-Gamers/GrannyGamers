@@ -45,23 +45,23 @@ public class AnvilTree : MonoBehaviour
             x_loc = -3;
 
         else if (patternCounter == 1)
-            x_loc = -1;
-
-        else if (patternCounter == 2)
-            x_loc = 1;
-
-        else if (patternCounter == 3)
-            x_loc = 3;
-
-        else if (patternCounter == 4)
             x_loc = -2;
 
-        else if (patternCounter == 5)
+        else if (patternCounter == 2)
+            x_loc = -1;
+
+        else if (patternCounter == 3)
             x_loc = 0;
+
+        else if (patternCounter == 4)
+            x_loc = 1;
+
+        else if (patternCounter == 5)
+            x_loc = 2;
 
         if (patternCounter == 6)
         {
-            x_loc = 2;
+            x_loc = 3;
             patternCounter = 0;
         }
 

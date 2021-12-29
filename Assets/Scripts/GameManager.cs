@@ -8,4 +8,9 @@ public class GameManager : MonoBehaviour
     {
         FindObjectOfType<SceneHandler>().L1CutsceneEnd();
     }
+
+    public void Win()
+    {
+        Debug.Log("You win!");
+    }
 }
