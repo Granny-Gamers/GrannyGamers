@@ -6,6 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public void GameOver()
     {
-        Debug.Log("Game over");
+        FindObjectOfType<SceneHandler>().L1CutsceneEnd();
     }
 }

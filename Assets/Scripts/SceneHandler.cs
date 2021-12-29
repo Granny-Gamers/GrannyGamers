@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadSceneWithButton : MonoBehaviour
+public class SceneHandler : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void L1CutsceneEnd()
+    {
+        LoadScene("L1");
     }
 }
