@@ -256,8 +256,8 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Text
-    clip: {fileID: 8300000, guid: b32379fb56487bd4b98839328ed27185, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: ad7fa140f94381847b4614527cbe3a59, type: 3}
+    volume: 0.3
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Theme
-    clip: {fileID: 8300000, guid: 8800461cc9c0ed04e82adaf5881bedeb, type: 3}
+    clip: {fileID: 8300000, guid: 4ac2dac7b1302fa4ba2e86842af2a7ce, type: 3}
     volume: 0.431
     volumeVariance: 0
     pitch: 1
@@ -274,12 +274,21 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Movement
-    clip: {fileID: 8300000, guid: 17fe35ce980ef4d26b6aa57295f97cb5, type: 3}
+    clip: {fileID: 8300000, guid: 6be68b69c7fc52d45a8b29af528edaee, type: 3}
     volume: 0.605
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Move Choice
+    clip: {fileID: 8300000, guid: 3973e22e76ff55a4b89587133d046774, type: 3}
+    volume: 0.605
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!1 &194314337
@@ -862,6 +871,8 @@ PlayableDirector:
     value: {fileID: 1997544649}
   - key: {fileID: 5892947790712873072, guid: 5930c70207878d848acef4e0e74af84c, type: 2}
     value: {fileID: 503014551}
+  - key: {fileID: 0}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &342793960
