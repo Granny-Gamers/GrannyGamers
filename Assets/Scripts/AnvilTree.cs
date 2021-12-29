@@ -36,6 +36,7 @@ public class AnvilTree : MonoBehaviour
         Vector3 randVector = new Vector3(xPos, 0, 0);
         AnvilMovement copy = Instantiate(anvil, tree.position + randVector, tree.rotation);
         copy.isCopy = true;
+        copy.SetActive(true);
     }
 
     private int PatternHandler()
