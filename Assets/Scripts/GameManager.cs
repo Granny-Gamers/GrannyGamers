@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
+    public PlayableDirector l1Post;
+
     public void GameOver()
     {
         FindObjectOfType<AudioManager>().StopPlaying("Movement");
@@ -13,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log("You win!");
+        Debug.Log("Win");
+        l1Post.Play();
     }
 }
