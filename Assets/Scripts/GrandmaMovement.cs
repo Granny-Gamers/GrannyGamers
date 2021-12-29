@@ -15,6 +15,9 @@ public class GrandmaMovement : MonoBehaviour
     // Field for passing the timeline manager
     public TimelineManager timelineManager;
 
+    //Used to control animation
+    public Animator animator;
+
     // Fields that vary movement.
     public Transform movePoint;
     public float moveSpeed;
@@ -108,6 +111,7 @@ public class GrandmaMovement : MonoBehaviour
         if (_commandString.Length == 0 && Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             _hasMoves = false;
+            animator.SetFloat("Speed", 0);
             return;
         }
 
@@ -165,25 +169,40 @@ public class GrandmaMovement : MonoBehaviour
 
         // Change the move point location depending on the next input.
         if (c == 'q')
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
             AdvanceMovePoint(-horiDist, vertDist);
+        }
 
         else if (c == 'w')
+        {
             AdvanceMovePoint(0, vertDist);
+        }
 
         else if (c == 'e')
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
             AdvanceMovePoint(horiDist, vertDist);
+        }
 
         else if (c == 'a')
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
             AdvanceMovePoint(-horiDist, 0);
+        }
 
         else if (c == 'd')
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
             AdvanceMovePoint(horiDist, 0);
+        }
     }
 
     // Changes the move point's position based on horizontalDist and verticalDist.
     private void AdvanceMovePoint(float horizontalDist, float verticalDist)
     {
         movePoint.position += new Vector3(horizontalDist, verticalDist, 0);
+        animator.SetFloat("Speed", 1);
     }
 }
 
