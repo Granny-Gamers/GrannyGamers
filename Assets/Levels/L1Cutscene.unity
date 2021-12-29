@@ -255,11 +255,20 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: Text
+  - name: Male Dialogue
     clip: {fileID: 8300000, guid: ad7fa140f94381847b4614527cbe3a59, type: 3}
     volume: 0.3
     volumeVariance: 0
     pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Female Dialogue
+    clip: {fileID: 8300000, guid: ad7fa140f94381847b4614527cbe3a59, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 2.5
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}
@@ -514,7 +523,7 @@ MonoBehaviour:
     - ' From this point forward, you will be helping the grandma to move safely.    '
     - Due to her old age, she can only remember up to five instructions.
     - Use WASD for directional movement and QE for directional jumps in order to
-      input your instructions
+      input your instructions.
     - Use Backspace to delete the most recent instruction and use Enter to run the
       inputted commands.
     - "Using these instructions, you will help the grandma survive err\u2026 get
