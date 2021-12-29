@@ -40,7 +40,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
             return;
         }
 
@@ -63,11 +62,5 @@ public class DialogueManager : MonoBehaviour
             //yield return null;
             yield return new WaitForSeconds(typingDelay);
         }
-    }
-
-    // Indicates that the dialogue has ended.
-    private void EndDialogue()
-    {
-        return;
     }
 }

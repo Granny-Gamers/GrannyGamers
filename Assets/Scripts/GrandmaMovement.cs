@@ -36,12 +36,6 @@ public class GrandmaMovement : MonoBehaviour
     [SerializeField] private float horiDist;
     [SerializeField] private float vertDist;
 
-    // Initializes variables before application starts.
-    private void Start()
-    {
-        movePoint.parent = null;
-    }
-
     // Runs every frame.
     private void Update()
     {
