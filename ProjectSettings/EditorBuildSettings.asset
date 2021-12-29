@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Levels/MovementDemo.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Levels/L1Cutscene.unity
+    guid: dacbe58174b4fcc4196eedef70077e6e
+  - enabled: 1
+    path: Assets/Levels/L1.unity
+    guid: a9f2843f911efbf4f8805c5bb8058d78
   m_configObjects: {}
