@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137406026}
-  - component: {fileID: 137406027}
   m_Layer: 0
   m_Name: MovePoint
   m_TagString: Untagged
@@ -154,20 +153,6 @@ Transform:
   m_Father: {fileID: 349631514}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &137406027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137406025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad19f54f1d50a545a47c248f3b834e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timelineManager: {fileID: 342793961}
-  movePoint: {fileID: 137406026}
 --- !u!1 &177123731
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +479,7 @@ GameObject:
   - component: {fileID: 216721129}
   - component: {fileID: 216721131}
   - component: {fileID: 216721130}
+  - component: {fileID: 216721132}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -579,8 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSystem: {fileID: 515334539}
-  movePoint: {fileID: 2040574066}
-  moveSpeed: 0.1
+  isCopy: 0
 --- !u!61 &216721131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -607,6 +592,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!50 &216721132
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216721127}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &217882046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1065,7 @@ GameObject:
   - component: {fileID: 349631513}
   - component: {fileID: 349631515}
   - component: {fileID: 349631516}
+  - component: {fileID: 349631517}
   m_Layer: 0
   m_Name: Grandma
   m_TagString: Untagged
@@ -1114,6 +1121,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 82cc0daa805e9a54f908120ec5ed952c, type: 2}
     - {fileID: 11400000, guid: e6745f15156e513489cc8db422aa7593, type: 2}
+    - {fileID: 11400000, guid: ab76715d4f9d6ff4cb73c608762457e0, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -1143,6 +1151,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 349631517}
+          m_TargetAssemblyTypeName: GrandmaManager, Assembly-CSharp
+          m_MethodName: ParentOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!95 &349631516
 Animator:
   serializedVersion: 3
@@ -1162,6 +1184,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &349631517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349631512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c79d6ef6059ec43bb0f56b2bdf1ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePoint: {fileID: 137406026}
 --- !u!1 &400027037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,7 +2008,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 216721128}
-  - {fileID: 2040574066}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2563,7 +2597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSystem: {fileID: 515334539}
-  anvil: {fileID: 957003526}
+  anvil: {fileID: 216721130}
   tree: {fileID: 1872542633}
 --- !u!1 &1901212425
 GameObject:
@@ -2881,51 +2915,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &2040574065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2040574066}
-  - component: {fileID: 2040574067}
-  m_Layer: 0
-  m_Name: MovePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2040574066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040574065}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 957003527}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2040574067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040574065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad19f54f1d50a545a47c248f3b834e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timelineManager: {fileID: 342793961}
-  movePoint: {fileID: 2040574066}
 --- !u!1 &2144510676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,8 +2949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000000011933, y: -0.3}
-  m_SizeDelta: {x: 1550, y: 71.163}
+  m_AnchoredPosition: {x: 0.000000011933, y: -0.19794}
+  m_SizeDelta: {x: 1550, y: 48.108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144510678
 MonoBehaviour:
@@ -2985,7 +2974,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
