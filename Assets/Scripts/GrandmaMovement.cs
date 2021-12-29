@@ -36,6 +36,11 @@ public class GrandmaMovement : MonoBehaviour
     [SerializeField] private float horiDist;
     [SerializeField] private float vertDist;
 
+    private void Start()
+    {
+        movePoint.parent = null;
+    }
+
     // Runs every frame.
     private void Update()
     {
@@ -199,5 +204,3 @@ public class GrandmaMovement : MonoBehaviour
         animator.SetFloat("Speed", 1);
     }
 }
-
-
