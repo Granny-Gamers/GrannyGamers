@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public void GameOver()
     {
+        FindObjectOfType<AudioManager>().StopPlaying("Movement");
+        FindObjectOfType<AudioManager>().Play("Game Over");
         FindObjectOfType<SceneHandler>().L1CutsceneEnd();
     }
 
