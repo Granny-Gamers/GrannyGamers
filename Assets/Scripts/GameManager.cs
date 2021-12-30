@@ -5,6 +5,8 @@ using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject LevelComplete;
+
     public PlayableDirector l1Post;
 
     public void GameOver()
@@ -16,7 +18,11 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log("Win");
         l1Post.Play();
+    }
+
+    public void L1Complete()
+    {
+        LevelComplete.SetActive(true);
     }
 }
