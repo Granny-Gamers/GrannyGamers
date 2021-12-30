@@ -51,7 +51,12 @@ public class DialogueManager : MonoBehaviour
     // Animates the typing of the sentence.
     IEnumerator TypeSentence(string sentence)
     {
-        FindObjectOfType<AudioManager>().Play("Text");
+        if (nameText.text == "Grandma")
+            FindObjectOfType<AudioManager>().Play("Female Dialogue");
+
+        else
+            FindObjectOfType<AudioManager>().Play("Male Dialogue");
+
         dialogueText.text = "";
 
         // Iterates through each character in the sentence, updating the dialogue and pausing per each iteration.

@@ -30,4 +30,9 @@ public class AnvilMovement : MonoBehaviour
         if (collision.gameObject.name == "Ground")
             Destroy(gameObject);
     }
+
+    public void SetActive(bool value)
+    {
+        gameObject.SetActive(value);
+    }
 }
