@@ -5,14 +5,21 @@ using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject LevelComplete;
+    public GameObject levelComplete;
+
+    public GameObject gameOver;
+
+    public GameObject debugCanvas;
 
     public PlayableDirector l1Post;
 
-    public void GameOver()
+    public IEnumerator Lose()
     {
+        debugCanvas.SetActive(false);
         FindObjectOfType<AudioManager>().StopPlaying("Movement");
         FindObjectOfType<AudioManager>().Play("Game Over");
+        gameOver.SetActive(true);
+        yield return new WaitForSeconds(3f);
         FindObjectOfType<SceneHandler>().L1CutsceneEnd();
     }
 
@@ -23,6 +30,6 @@ public class GameManager : MonoBehaviour
 
     public void L1Complete()
     {
-        LevelComplete.SetActive(true);
+        levelComplete.SetActive(true);
     }
 }
