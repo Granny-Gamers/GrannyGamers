@@ -48,8 +48,7 @@ public class AnvilTree : MonoBehaviour
             x_loc = -2;
             patternCounter++;
         }
-            
-
+         
         else if (patternCounter == 1)
         {
             x_loc = 2;
