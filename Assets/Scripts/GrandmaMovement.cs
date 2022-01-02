@@ -87,7 +87,7 @@ public class GrandmaMovement : MonoBehaviour
         }
 
         // Checks if a directional key was inputted.
-        if (!(charInput == 'q' || charInput == 'w' || charInput == 'e' || charInput == 'a' || charInput == 'd'))
+        if (!(charInput == 'q' || charInput == 'w' || charInput == 'e' || charInput == 'a' || charInput == 'd' || charInput == 's'))
             return;
 
         // Ensures no more than 5 commands are inputted.
@@ -168,27 +168,32 @@ public class GrandmaMovement : MonoBehaviour
         char c = _commandString[0];
 
         // Change the move point location depending on the next input.
-        if (c == 'q')
-        {
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            AdvanceMovePoint(-horiDist, vertDist);
-        }
+        //if (c == 'q')
+        //{
+        //    transform.localRotation = Quaternion.Euler(0, 180, 0);
+        //    AdvanceMovePoint(-horiDist, vertDist);
+        //}
 
-        else if (c == 'w')
-        {
-            AdvanceMovePoint(0, vertDist);
-        }
+        //else if (c == 'w')
+        //{
+        //    AdvanceMovePoint(0, vertDist);
+        //}
 
-        else if (c == 'e')
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            AdvanceMovePoint(horiDist, vertDist);
-        }
+        //else if (c == 'e')
+        //{
+        //    transform.localRotation = Quaternion.Euler(0, 0, 0);
+        //    AdvanceMovePoint(horiDist, vertDist);
+        //}
 
-        else if (c == 'a')
+        if (c == 'a')
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             AdvanceMovePoint(-horiDist, 0);
+        }
+
+        else if (c == 's')
+        {
+            return;
         }
 
         else if (c == 'd')
@@ -196,6 +201,8 @@ public class GrandmaMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             AdvanceMovePoint(horiDist, 0);
         }
+
+        
     }
 
     // Changes the move point's position based on horizontalDist and verticalDist.

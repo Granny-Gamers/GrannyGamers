@@ -525,6 +525,7 @@ MonoBehaviour:
     - 'From this point forward, you will be helping the grandma to move safely.    '
     - Due to her old age, she can only remember up to five instructions.
     - Use W & D for directional movement instructions.
+    - Use S to stay in place for one turn.
     - Use Backspace to delete the most recent instruction and use Enter to run the
       inputted commands.
     - "Using these instructions, you will help the grandma survive err\u2026 get
