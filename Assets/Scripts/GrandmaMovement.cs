@@ -157,6 +157,7 @@ public class GrandmaMovement : MonoBehaviour
         }
 
         // Move towards the move point by an amount given by moveSpeed.
+        //transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed);
     }
 
@@ -201,8 +202,6 @@ public class GrandmaMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             AdvanceMovePoint(horiDist, 0);
         }
-
-        
     }
 
     // Changes the move point's position based on horizontalDist and verticalDist.
