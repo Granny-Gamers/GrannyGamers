@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
 	public Sound[] sounds;
 
+	//play sounds that are play on awake
 	void Awake()
 	{
 		if (instance != null)
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
+	//find sound in list and play it
 	public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
@@ -47,6 +49,7 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+	//stop playing sounds
 	public void StopPlaying(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);

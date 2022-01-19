@@ -2,6 +2,8 @@
 using UnityEngine;
 
 [System.Serializable]
+
+//Sound class with various changeable values
 public class Sound {
 
 	public string name;
