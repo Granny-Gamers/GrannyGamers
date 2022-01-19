@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnvilManager : MonoBehaviour
 {
+    // Destorys the anvil object.
     public void Destroy()
     {
         Destroy(gameObject);

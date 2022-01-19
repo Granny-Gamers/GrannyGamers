@@ -9,8 +9,10 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    // Public float variables for editing the typing delay between each character being printed.
     public float typingDelay;
 
+    // Queue for the sentences/dialogue that need to be displayed.
     private Queue<string> sentences;    
 
     // Start is called before the first frame update.
@@ -51,6 +53,7 @@ public class DialogueManager : MonoBehaviour
     // Animates the typing of the sentence.
     IEnumerator TypeSentence(string sentence)
     {
+        // Differentiate between male and female dialogue sounds.
         if (nameText.text == "Grandma")
             FindObjectOfType<AudioManager>().Play("Female Dialogue");
 

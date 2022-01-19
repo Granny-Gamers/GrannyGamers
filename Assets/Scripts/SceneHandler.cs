@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
+    // Runs at the start of the program.
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+
+        // Handles the background audio for each scene.
         if (currentScene.name == "L1Cutscene")
             FindObjectOfType<AudioManager>().Play("Theme");
 
@@ -18,11 +21,13 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
+    // Loads the scene given by sceneName
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
+    // Loads the post level 1 cutscene.
     public void L1CutsceneEnd()
     {
         LoadScene("L1");

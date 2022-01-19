@@ -201,8 +201,6 @@ public class GrandmaMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             AdvanceMovePoint(horiDist, 0);
         }
-
-        
     }
 
     // Changes the move point's position based on horizontalDist and verticalDist.

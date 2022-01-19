@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class AnvilTree : MonoBehaviour
 {
+    // Field for passing the turn system.
     public TurnSystem turnSystem;
-    
-    public AnvilMovement anvil;
-    public Transform tree;
 
+    // Internal counter for turns.
     private int _turn = 0;
 
+    // Field for passing the anvil.
+    public AnvilMovement anvil;
+
+    // Field for passing the tree.
+    public Transform tree;
+
+    // Internal counter for keeping track of the pattern for anvil spawning.
     private int patternCounter = 0;
 
     // Update is called once per frame
@@ -39,6 +45,7 @@ public class AnvilTree : MonoBehaviour
         copy.SetActive(true);
     }
 
+    // Determines where the next anvil should be spawned.
     private int PatternHandler()
     {
         int x_loc = 0;
